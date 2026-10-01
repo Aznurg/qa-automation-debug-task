@@ -2,8 +2,8 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 
-import static com.codeborne.selenide.Condition.checked;
-import static com.codeborne.selenide.Condition.value;
+import static com.codeborne.selenide.Condition.*;
+import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selenide.$;
 
 public class WebFormPage {
@@ -13,8 +13,8 @@ public class WebFormPage {
     private String expectedText;
 
     public WebFormPage fillForm(String text) {
-        expectedText = textInput.getValue();
         textInput.setValue(text);
+        expectedText = textInput.getValue();
         checkbox
                 .setSelected(true)
                 .shouldBe(checked);
@@ -26,8 +26,15 @@ public class WebFormPage {
         return this;
     }
 
-    public WebFormPage submit() {
+    public SubmittedFormPage submit() {
         $("button").click();
+        return new SubmittedFormPage();
+    }
+
+    public WebFormPage checkHeader() {
+        $("h1")
+                .shouldBe(visible)
+                .shouldHave(text("Web form"));
         return this;
     }
 }

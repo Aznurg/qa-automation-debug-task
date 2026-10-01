@@ -9,10 +9,12 @@ import reporting.Report;
 
 public abstract class WebFixture {
 
+    protected final static String URL = "https://www.selenium.dev/selenium/web/web-form.html";
+
     @AfterMethod(alwaysRun = true)
     public void teardown() {
-        Selenide.closeWebDriver();
         SessionId sessionId = ((RemoteWebDriver) WebDriverRunner.getWebDriver()).getSessionId();
+        Selenide.closeWebDriver();
         Report.attachSessionInfo(sessionId);
     }
 }
