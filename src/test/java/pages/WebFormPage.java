@@ -8,6 +8,11 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class WebFormPage {
 
+    /** В данном классе была обнаружена логическая ошибка в методе fillForm,
+     * в котором были перепутаны строки, и сначала из пустого поля забиралось значение для переменной
+     * expectedText, и только потом в это поле записывалось тестовое значение.
+     * Также сюда была перенесена часть логики по проверке отображения заголовка страницы **/
+
     private final SelenideElement textInput = $("[name='my-text']");
     private final SelenideElement checkbox = $("[name='my-check']");
     private String expectedText;

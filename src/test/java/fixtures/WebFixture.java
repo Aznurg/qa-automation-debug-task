@@ -9,6 +9,9 @@ import reporting.Report;
 
 public abstract class WebFixture {
 
+    /** Здесь была допущена ошибка - строки с получением данных о сессии выполнялись
+     * после того, как драйвер закрывался, и это вызывало ошибку потока **/
+
     protected final static String URL = "https://www.selenium.dev/selenium/web/web-form.html";
 
     @AfterMethod(alwaysRun = true)
